@@ -7,4 +7,5 @@ const employeeSchema = new mongoose.Schema({
   isActive: { type: Boolean, default: true }
 });
 
-module.exports = mongoose.model("Employee", employeeSchema);
+// Вказуємо точну назву колекції "employees" як третій параметр
+module.exports = mongoose.model("Employee", employeeSchema, "employees");
