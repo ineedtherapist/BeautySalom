@@ -8,8 +8,12 @@ router.get("/", async (req, res) => {
   try {
     console.log("Fetching services from MongoDB...");
     const services = await Service.find();
+    console.log(`Found ${services.length} services`);
     
-    console.log("Services fetched:", services.length);
+    // Для діагностики
+    services.forEach(service => {
+      console.log(`Service ${service.name}, isAvailable: ${service.isAvailable}, type: ${typeof service.isAvailable}`);
+    });
     
     // Вимкнення кешування
     res.set({
@@ -19,52 +23,59 @@ router.get("/", async (req, res) => {
     });
     
     res.json(services);
-  } catch (error) {
-    console.error("Error fetching services:", error.message);
-    res.status(500).json({ error: error.message });
+  } catch (err) {
+    console.error("Error fetching services:", err);
+    res.status(500).json({ error: "Помилка сервера при отриманні послуг" });
   }
 });
 
-// GET: Отримати одну послугу за ID
+// GET: Отримати послугу за ID
 router.get("/:id", async (req, res) => {
   try {
     const service = await Service.findById(req.params.id);
-    
     if (!service) {
       return res.status(404).json({ error: "Послугу не знайдено" });
     }
-    
     res.json(service);
-  } catch (error) {
-    console.error("Error fetching service:", error.message);
-    res.status(500).json({ error: error.message });
+  } catch (err) {
+    res.status(500).json({ error: "Помилка сервера при отриманні послуги" });
   }
 });
 
 // POST: Створити нову послугу
 router.post("/", async (req, res) => {
-  const { name, description, price, duration, isAvailable } = req.body;
-
-  // Перевірка обов'язкових полів
-  if (!name || !description || price === undefined || duration === undefined) {
-    return res.status(400).json({ error: "Назва, опис, ціна та тривалість є обов'язковими полями" });
-  }
-
-  const newService = new Service({ 
-    name, 
-    description, 
-    price, 
-    duration,
-    isAvailable: isAvailable === undefined ? true : isAvailable
-  });
-  
   try {
+    const { name, description, price, duration, isAvailable } = req.body;
+    
+    // Перевірка обов'язкових полів
+    if (!name || !description || price === undefined || duration === undefined) {
+      return res.status(400).json({ error: "Назва, опис, ціна та тривалість є обов'язковими полями" });
+    }
+    
+    // Для діагностики
+    console.log("Створення нової послуги");
+    console.log("isAvailable отримано:", isAvailable);
+    console.log("isAvailable тип:", typeof isAvailable);
+    
+    // Перетворюємо на булевий тип
+    const isAvailableBool = isAvailable === true;
+    console.log("isAvailable після перетворення:", isAvailableBool);
+    
+    const newService = new Service({
+      name,
+      description,
+      price,
+      duration,
+      isAvailable: isAvailableBool
+    });
+    
     const savedService = await newService.save();
-    console.log("New service created:", savedService);
+    console.log("Послугу збережено, isAvailable:", savedService.isAvailable);
+    
     res.status(201).json(savedService);
-  } catch (error) {
-    console.error("Error creating service:", error.message);
-    res.status(400).json({ error: error.message });
+  } catch (err) {
+    console.error("Error creating service:", err);
+    res.status(500).json({ error: "Помилка сервера при створенні послуги" });
   }
 });
 
@@ -78,9 +89,24 @@ router.put("/:id", async (req, res) => {
       return res.status(400).json({ error: "Назва, опис, ціна та тривалість є обов'язковими полями" });
     }
     
+    // Для діагностики
+    console.log("Оновлення послуги");
+    console.log("isAvailable отримано:", isAvailable);
+    console.log("isAvailable тип:", typeof isAvailable);
+    
+    // Перетворюємо на булевий тип
+    const isAvailableBool = isAvailable === true;
+    console.log("isAvailable після перетворення:", isAvailableBool);
+    
     const updatedService = await Service.findByIdAndUpdate(
       req.params.id,
-      { name, description, price, duration, isAvailable },
+      {
+        name,
+        description,
+        price,
+        duration,
+        isAvailable: isAvailableBool
+      },
       { new: true, runValidators: true }
     );
     
@@ -88,11 +114,12 @@ router.put("/:id", async (req, res) => {
       return res.status(404).json({ error: "Послугу не знайдено" });
     }
     
-    console.log("Service updated:", updatedService);
+    console.log("Послугу оновлено, isAvailable:", updatedService.isAvailable);
+    
     res.json(updatedService);
-  } catch (error) {
-    console.error("Error updating service:", error.message);
-    res.status(400).json({ error: error.message });
+  } catch (err) {
+    console.error("Error updating service:", err);
+    res.status(500).json({ error: "Помилка сервера при оновленні послуги" });
   }
 });
 
