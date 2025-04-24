@@ -30,11 +30,7 @@
      npm -v
      ```
 
-2. **MongoDB**
-   - Варіант 1: Встановіть локальну версію MongoDB з [офіційного сайту MongoDB](https://www.mongodb.com/try/download/community)
-   - Варіант 2: Використовуйте MongoDB Atlas (хмарне рішення) - [створіть безкоштовний кластер](https://www.mongodb.com/cloud/atlas/register)
-
-3. **Git** (опціонально)
+2. **Git** (опціонально)
    - Встановіть Git з [офіційного сайту](https://git-scm.com/downloads)
    - Перевірте встановлення: `git --version`
 
@@ -47,20 +43,19 @@
    ```
 
 2. **Налаштування бекенду**:
-   ```bash
+   ```
    cd backend
    npm install
    ```
 
 3. **Створіть файл .env у директорії backend** зі змінними середовища:
    ```
-   PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/salon_management
+   MONGODB_URI=mongodb+srv://admin:123@cluster0.zz1iqwn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
    ```
    *Примітка: якщо ви використовуєте MongoDB Atlas, замініть MONGODB_URI на відповідний рядок підключення.*
 
 4. **Налаштування фронтенду**:
-   ```bash
+   ```
    cd ../frontend
    npm install
    ```
@@ -70,27 +65,11 @@
 ### Варіант 1: Одночасний запуск бекенду та фронтенду (рекомендовано)
 
 1. Запустіть проект з кореневої директорії:
-   ```bash
+   ```
    cd backend
    npm run dev
    ```
    Ця команда запустить одночасно сервер (backend) та клієнт (frontend).
-
-### Варіант 2: Окремий запуск бекенду та фронтенду
-
-1. **Запуск бекенду**:
-   ```bash
-   cd backend
-   npm start
-   ```
-   Сервер запуститься на порту 5000 (або на іншому порту, вказаному у .env файлі).
-
-2. **Запуск фронтенду** (відкрийте новий термінал):
-   ```bash
-   cd frontend
-   npm start
-   ```
-   Клієнтський додаток буде доступний за адресою [http://localhost:3000](http://localhost:3000).
 
 ## Доступ до додатку
 
