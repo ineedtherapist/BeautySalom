@@ -1,30 +1,30 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# Dependencies
+node_modules/
 /node_modules
 /frontend/node_modules
 /backend/node_modules
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-/frontend/coverage
-
-# production
-/build
-/frontend/build
-
-# misc
-.DS_Store
+# Environment files
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
 .env.development
-.env.production
 .env.test
+.env.production
+.env.*.local
+
+# Build files
+/build
+/frontend/build
+/dist
+
+# Testing
+/coverage
+/frontend/coverage
+/backend/coverage
+/frontend/__tests__/coverage
+/backend/__tests__/coverage
 
 # Logs
 logs
@@ -44,91 +44,41 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-# Optional npm cache directory
-.npm
+# OS specific
+.DS_Store
+Thumbs.db
+.directory
 
-# Optional eslint cache
+# Temp and cache
+.cache/
+.parcel-cache/
 .eslintcache
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# Certificates and private keys
-*.pem
-*.key
-*.cert
-
-# Temp files
-*.tmp
-*.temp
 .temp/
 .tmp/
+*.tmp
+*.temp
 
-# Backup files
-*.bak
-*.backup
-
-# MongoDB data directory
+# MongoDB data
+/data/
 /data/db
 /dump
 
-# Uploads or generated files
+# Uploads
 /uploads
 /frontend/public/uploads
 
-# Cache
-.cache/
-.parcel-cache/
+# Package files
+*.tgz
+package-lock.json
+yarn.lock
+.yarn-integrity
+.yarnrc
 
-# TypeScript incremental compilation
+# Misc
+*.bak
+*.backup
+*.pem
+*.key
+*.cert
 *.tsbuildinfo
-
-# Mac specific
-.AppleDouble
-.LSOverride
-Icon
-Thumbs.db
-ehthumbs.db
-.Spotlight-V100
-.Trashes
-
-# Windows specific
-$RECYCLE.BIN/
-Desktop.ini
-
-# Linux specific
-*~
-.fuse_hidden*
-.directory
-.Trash-*
-.nfs*
-
-# Yarn v2
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
-
-# Vercel
 .vercel
-
-# Next.js
-.next/
-out/
-
-# Gatsby
-.gatsby/
-.cache/
-public
-
-# Debug files
-debug.log
