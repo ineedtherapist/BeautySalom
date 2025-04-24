@@ -1,0 +1,38 @@
+.main-footer {
+  background-color: #343a40;
+  color: #f8f9fa;
+  padding: 20px 0;
+  margin-top: auto;
+  position: static;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #adb5bd;
+}
+
+.footer-info p {
+  font-size: 14px;
+  color: #adb5bd;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}

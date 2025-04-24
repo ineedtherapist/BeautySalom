@@ -8,19 +8,24 @@ import Clients from './pages/Clients';
 import Employees from './pages/Employees';
 import Services from './pages/Services';
 import Appointments from './pages/Appointments';
+import './styles/App.css';
 
 function App() {
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/clients" element={<Clients />} />
-        <Route path="/employees" element={<Employees />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/appointments" element={<Appointments />} />
-      </Routes>
-      <Footer />
+      <div className="app-container">
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/clients" element={<Clients />} />
+            <Route path="/employees" element={<Employees />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/appointments" element={<Appointments />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }
