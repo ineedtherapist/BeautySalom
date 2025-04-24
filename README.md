@@ -1,93 +1,153 @@
-# Система управління салоном краси
+# Beauty Salon Management System
 
-Веб-додаток для управління салоном краси з повним набором інструментів для керування клієнтами, записами, послугами та персоналом.
+A comprehensive web application for managing beauty salons with tools for handling clients, appointments, services, and staff.
 
-## Використані технології
+## Features
+
+- **Client Management**: Add, edit, and manage client profiles and history
+- **Appointment Scheduling**: Create and manage appointments with calendar integration
+- **Service Management**: Configure services, prices, and duration
+- **Staff Management**: Manage employee profiles, schedules, and specializations
+- **User-friendly Interface**: Modern, responsive design for both desktop and mobile use
+
+## Technologies Used
 
 ### Frontend
-- **React** (v18.3.1) - сучасна JavaScript бібліотека для створення інтерфейсів користувача
-- **React Router DOM** (v7.5.1) - маршрутизація на стороні клієнта
-- **Axios** (v1.8.4) - HTTP-клієнт для виконання запитів до API
-- **React Scripts** (v5.0.1) - скрипти та конфігурація для React-додатку
+- **React** (v19.1.0) - Modern JavaScript library for building user interfaces
+- **React Router DOM** (v7.5.1) - Client-side routing
+- **Axios** (v1.8.4) - HTTP client for API requests
+- **React Scripts** (v5.0.1) - Scripts and configuration for React applications
 
 ### Backend
-- **Node.js** - середовище виконання JavaScript на стороні сервера
-- **Express** (v4.18.2) - фреймворк для створення веб-серверів на Node.js
-- **MongoDB** (v5.8.0) - NoSQL база даних
-- **Mongoose** (v7.0.0) - ODM-бібліотека для MongoDB
-- **Cors** (v2.8.5) - middleware для обробки CORS-запитів
-- **Dotenv** (v16.0.0) - завантаження змінних середовища з файлу .env
+- **Node.js** - Server-side JavaScript runtime
+- **Express** (v4.18.2) - Web framework for Node.js
+- **MongoDB** (v5.8.0) - NoSQL database
+- **Mongoose** (v7.0.0) - MongoDB object modeling for Node.js
+- **CORS** (v2.8.5) - Middleware for handling Cross-Origin Resource Sharing
+- **Dotenv** (v16.0.0) - Loading environment variables from .env files
 
-## Попередні вимоги для запуску проекту
+## Prerequisites
 
-Перед запуском проекту вам потрібно встановити наступне програмне забезпечення:
+Before running the project, you need to install:
 
-1. **Node.js** (версія 16.x або вище) і **npm** (версія 8.x або вище)
-   - Завантажте та встановіть з [офіційного сайту Node.js](https://nodejs.org/)
-   - Перевірте встановлення за допомогою команд:
+1. **Node.js** (version 16.x or higher) & **npm** (version 8.x or higher)
+   - Download and install from [Node.js official website](https://nodejs.org/)
+   - Verify installation with:
      ```
      node -v
      npm -v
      ```
 
-2. **Git** (опціонально)
-   - Встановіть Git з [офіційного сайту](https://git-scm.com/downloads)
-   - Перевірте встановлення: `git --version`
+2. **Git** (optional)
+   - Install Git from [official website](https://git-scm.com/downloads)
+   - Verify installation: `git --version`
 
-## Налаштування проекту
+## Project Setup
 
-1. **Клонування проекту** (якщо використовуєте Git):
+1. **Clone the repository** (if using Git):
    ```
-   git clone <URL репозиторію>
-   cd <назва проекту>
+   git clone <repository URL>
+   cd beauty-salon-management
    ```
 
-2. **Налаштування бекенду**:
+2. **Backend setup**:
    ```
    cd backend
    npm install
    ```
 
-3. **Створіть файл .env у директорії backend** зі змінними середовища:
-   ```
-   MONGODB_URI=mongodb+srv://admin:123@cluster0.zz1iqwn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-   ```
-   *Примітка: якщо ви використовуєте MongoDB Atlas, замініть MONGODB_URI на відповідний рядок підключення.*
-
-4. **Налаштування фронтенду**:
+3. **Frontend setup**:
    ```
    cd ../frontend
    npm install
    ```
 
-## Запуск проекту
+## Running the Application
 
-### Варіант 1: Одночасний запуск бекенду та фронтенду (рекомендовано)
+### Option 1: Running backend and frontend concurrently (recommended)
 
-1. Запустіть проект з кореневої директорії:
+1. From the backend directory:
    ```
    cd backend
    npm run dev
    ```
-   Ця команда запустить одночасно сервер (backend) та клієнт (frontend).
+   This command will start both the server (backend) and client (frontend) simultaneously.
 
-## Доступ до додатку
+### Option 2: Running backend and frontend separately
 
-- **Фронтенд**: [http://localhost:3000](http://localhost:3000)
-- **API бекенду**: [http://localhost:5000/api](http://localhost:5000/api)
+1. Start the backend:
+   ```
+   cd backend
+   npm start
+   ```
 
-## Типові проблеми та їх вирішення
+2. In a separate terminal, start the frontend:
+   ```
+   cd frontend
+   npm start
+   ```
 
-1. **Помилка "Port already in use"** - порт вже використовується іншим процесом:
-   - Для Windows: знайдіть та завершіть процес, що використовує цей порт
-   - Для Linux/Mac: `sudo kill -9 $(sudo lsof -t -i:PORT)`
-   - Або змініть порт у файлі .env для бекенду
+## Accessing the Application
 
-2. **Проблеми з підключенням до MongoDB**:
-   - Переконайтеся, що MongoDB запущено (якщо використовуєте локальну версію)
-   - Перевірте правильність рядка підключення MONGODB_URI у файлі .env
-   - Переконайтеся, що IP-адреса, з якої ви підключаєтесь, додана у список дозволених у MongoDB Atlas
+- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Backend API**: [http://localhost:5000/api](http://localhost:5000/api)
 
-3. **Помилки при встановленні пакетів**:
-   - Спробуйте видалити папки node_modules та запустити `npm install` знову
-   - Перевірте версію npm та Node.js
+## API Endpoints
+
+The application provides the following API endpoints:
+
+- **Clients**
+   - `GET /api/clients` - Get all clients
+   - `POST /api/clients` - Create a new client
+   - `GET /api/clients/:id` - Get a specific client
+   - `PUT /api/clients/:id` - Update a client
+   - `DELETE /api/clients/:id` - Delete a client
+
+- **Employees**
+   - `GET /api/employees` - Get all employees
+   - `POST /api/employees` - Create a new employee
+   - `GET /api/employees/:id` - Get a specific employee
+   - `PUT /api/employees/:id` - Update an employee
+   - `DELETE /api/employees/:id` - Delete an employee
+
+- **Services**
+   - `GET /api/services` - Get all services
+   - `POST /api/services` - Create a new service
+   - `GET /api/services/:id` - Get a specific service
+   - `PUT /api/services/:id` - Update a service
+   - `DELETE /api/services/:id` - Delete a service
+
+- **Appointments**
+   - `GET /api/appointments` - Get all appointments
+   - `POST /api/appointments` - Create a new appointment
+   - `GET /api/appointments/:id` - Get a specific appointment
+   - `PUT /api/appointments/:id` - Update an appointment
+   - `DELETE /api/appointments/:id` - Delete an appointment
+
+## Troubleshooting
+
+1. **"Port already in use" error**:
+   - For Windows: Find and terminate the process using that port
+   - For Linux/Mac: `sudo kill -9 $(sudo lsof -t -i:PORT)`
+   - Or change the port in the .env file for the backend
+
+2. **MongoDB connection issues**:
+   - Ensure MongoDB is running (if using a local instance)
+   - Verify the connection string in your .env file
+   - Make sure your IP address is whitelisted if using MongoDB Atlas
+
+3. **Package installation errors**:
+   - Try deleting the node_modules folder and running `npm install` again
+   - Check your npm and Node.js versions
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feature-name`
+5. Submit a pull request
+
+## License
+
+This project is licensed under the ISC License.
